@@ -1,0 +1,21 @@
+name;formula;cas_number;type;weight_molar
+Acetic Acid;C2H4O2;64-19-7;conventional;60.0526
+Water;H20;7732-18-5;Conventional;18.0153
+Glucose;C6H12O6;50-99-7;Conventional;180.158
+Maltopentaose;C30H52O26;34620-76-3;Conventional;828.727
+Protein;C13H25O7N3S1;;Conventional;367.42
+Methane;CH4;74-82-8;Conventional;16.0428
+Carbon Dioxide;CO2;124-38-9;Conventional;44.0098
+Ammonia;NH3;7664-41-7;Conventional;17.0306
+Hydrogen Sulfide;H2S;7783-06-04;Conventional;34.0819
+Triolein;C57H104O6;122-32-7;Conventional;885.449
+Glycerol;C3H8O3;56-81-5;Conventional;92.0947
+Oleic Acid;C18H34O2;112-80-1;Conventional;282.467
+Microorganism;C5H7O2N1; ;Conventional;113.116
+Propionic Acid;C3H6O2;79-09-4;Conventional;74.0794
+Butyric Acid;C4H8O2;107-92-6;Conventional;88.1063
+Lactic Acid;C3H6O3;50-21-5;Conventional;90.0788
+Hydrogen;H2;1333-74-0;Conventional;2.01588
+Oxygen;O2;7782-44-7;Conventional;15.999
+Nitrogen;N2;7727-37-9;Conventional;28.02
+Ethanol;C2H6O2;64-17-5;Conventional;46.069
