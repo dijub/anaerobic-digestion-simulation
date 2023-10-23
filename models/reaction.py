@@ -39,9 +39,11 @@ class Reaction:
     def calc_flow_outlet(self):
         for coef, reagent in self.reagents:
             reagent.flow_molar = reagent.flow_molar + coef * self.reaction_extent
+            reagent.calculate_mass()
         
         for coef, product in self.products:
-            product.flow_molar = product.flow_molar + coef * self.reaction_extent           
+            product.flow_molar = product.flow_molar + coef * self.reaction_extent       
+            product.calculate_mass()    
             
     def print_reaction(self):
         arrow = '-->' if not self.is_reverse else '<-->'

@@ -1,4 +1,4 @@
-from models import Compound
+from models import Compound, Mixture
 from repositories import Compounds, Reactions
 
 class Reactor:
@@ -6,6 +6,7 @@ class Reactor:
         self.flow = flow 
         self.composition = composition
         self.compounds = Compounds()
+        self.biogas = None 
         
     def start_reactor(self):
         self.set_concentration()
@@ -16,6 +17,14 @@ class Reactor:
             print(f'Reaction {reaction.order_reaction}')
             reaction.start()
             print()
+        
+        self.biogas.calculate_properties()
+        self.digestate.calculate_properties()
+
+        self.biogas.print_properties()
+
+            
+        self.print_reactor(biogas= self.biogas.mass, digestate= self.digestate.mass, inlet= self.biogas.mass + self.digestate.mass)
 
     
     def set_concentration(self):
@@ -23,8 +32,20 @@ class Reactor:
             compound = self.compounds.get_value(item)
             conc_in_flow = self.composition[item]
             compound.conc_in_flow = conc_in_flow
-                        
     
+    def print_reactor(self, inlet=0, biogas=0, digestate=0, unit="kg"):
+        arrow_inlet = f"Inlet ----->"
+        arrow_biogas = f"-----> Biogas"
+        arrow_digestate = f"-----> Digestate"
+        len_unit = len(unit)
+        print(f'{" ":>15}{"":_>13}')
+        print(f'{"|":>16}{"|":>6}{"|":>6}{arrow_biogas}')
+        print(f'{arrow_inlet:>15}|{"|":>6}{"|":>6}{biogas:.2f} {unit}')
+        print(f'{inlet:>12.2f} {unit:>{len_unit}}|{"|":>6}{"|":>6}')
+        print(f'{"|":>16}{"__|__":>8}{"|":>4}')
+        print(f'{"|":>16}{"|":>3}{"":_>5}{"|":>1}{"|":>3}{arrow_digestate}')
+        print(f'{"|":>16}{"":_>11}{"|":>1}{digestate:.2f} {unit}')
+        
     def load_reactions(self):
         self.reactions = Reactions()
         
@@ -47,6 +68,11 @@ class Reactor:
         lactic_acid = self.compounds.get_value('lactic acid')
         hydrogen = self.compounds.get_value('hydrogen')
         ethanol = self.compounds.get_value('ethanol')
+        
+        
+        self.biogas = Mixture("Biogas", carbon_dioxide, methane, ammonia, hydrogen_sulfide, hydrogen)
+        self.digestate = Mixture("Digestate", water, glucose, amylopectina, amylose, protein, triolein, glycerol, oleic_acid,
+                                 microorganism, acetic_acid, propionic_acid, butyric_acid, lactic_acid, ethanol)
         
         reactions_settings = {
             1: {
